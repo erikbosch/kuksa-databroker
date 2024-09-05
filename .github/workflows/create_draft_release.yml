@@ -83,7 +83,11 @@ jobs:
           pattern: databroker*
           merge-multiple: true
       - name: Display structure of downloaded files
-        run: ls -R build-artifacts
+        run: |
+             ls -R build-artifacts
+             cd build-artifacts
+             for f in databroker*.tar.gz; do mv "$f" "$(echo "$f" | sed s/tar.gz/${{ needs.get_version.outputs.version }}.tar.gz/)"; done
+
 
       - name: Create release
         id: create_release
