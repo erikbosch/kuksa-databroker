@@ -14,7 +14,8 @@
 name: Create Draft Release
 
 on:
-  workflow_dispatch: # select tag when creating
+  release:
+    types: [published]
   push:
    tags:
      - "*.*.*"
